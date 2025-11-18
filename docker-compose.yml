@@ -1,0 +1,22 @@
+services:
+  hairven:
+    build: .
+    image: hairven-salon:latest
+    ports:
+      - "8080:3000"
+    volumes:
+      # Mount source code for development (hot reload)
+      - ./src:/app/src:ro
+      - ./static:/app/static:ro
+      # Mount data directory for JSON database persistence
+      - hairven_data:/data
+    environment:
+      - DB_PATH=/data/appointments.json
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+    restart: unless-stopped
+
+volumes:
+  hairven_data:
+
