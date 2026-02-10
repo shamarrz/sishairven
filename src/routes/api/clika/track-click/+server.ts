@@ -1,77 +1,61 @@
-import { json, type RequestHandler } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
+import type { RequestHandler } from './$types';
+import { json } from '@sveltejs/kit';
 
-/**
- * POST /api/clika/track-click
- * 
- * Proxies affiliate click tracking to Phoenix Clika service.
- * Adds session info and validates request before forwarding.
- */
+export interface ClickTrackingData {
+  asin: string;
+  productName: string;
+  category: string;
+  country: string;
+  timezone?: string;
+  timestamp: number;
+  source?: string;
+  campaign?: string;
+  estimatedCommission?: number;
+  proxyId?: string;
+  isBusinessHours?: boolean;
+}
 
-const CLIKA_API_URL = env.CLIKA_API_URL || 'http://localhost:8080';
-const CLIKA_API_KEY = env.CLIKA_API_KEY || '';
-
-export const POST: RequestHandler = async ({ request, getClientAddress }) => {
-	try {
-		const body = await request.json();
-		
-		// Validate required fields
-		if (!body.asin || !body.session_id) {
-			return json({
-				success: false,
-				error: 'ASIN and session_id are required'
-			}, { status: 400 });
-		}
-
-		// Add client metadata
-		const enrichedData = {
-			...body,
-			client_ip: getClientAddress(),
-			user_agent: request.headers.get('user-agent'),
-			referrer: request.headers.get('referer'),
-			tracked_at: Date.now()
-		};
-
-		// Forward to Clika service
-		const clikaResponse = await fetch(
-			`${CLIKA_API_URL}/api/clika/adfraud/domains/sishairven/click`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-API-Key': CLIKA_API_KEY,
-					'X-Forwarded-For': getClientAddress()
-				},
-				body: JSON.stringify(enrichedData)
-			}
-		);
-
-		if (!clikaResponse.ok) {
-			const errorText = await clikaResponse.text();
-			console.warn('Clika API error:', errorText);
-			// Return success to client even if backend fails (don't block user)
-			return json({
-				success: true,
-				tracked: false,
-				warning: 'Backend tracking failed but click registered locally'
-			});
-		}
-
-		const result = await clikaResponse.json();
-
-		return json({
-			success: true,
-			tracked: true,
-			click_id: result.click_id
-		});
-
-	} catch (error) {
-		console.error('Click tracking error:', error);
-		// Return success to not block user experience
-		return json({
-			success: true,
-			tracked: false,
-			error: 'Tracking error logged'
-		});
-	}
+export const POST: RequestHandler = async ({ request, locals, getClientAddress }) => {
+  try {
+    const data: ClickTrackingData = await request.json();
+    
+    if (!data.asin || !data.productName) {
+      return json({ error: 'Missing required fields' }, { status: 400 });
+    }
+    
+    const trackingRecord = {
+      ...data,
+      country: data.country || locals.geo?.country || 'US',
+      timezone: data.timezone || locals.geo?.timezone || 'UTC',
+      ipHash: hashIP(getClientAddress()),
+      serverTimestamp: Date.now(),
+      userAgent: request.headers.get('User-Agent') || 'unknown',
+    };
+    
+    console.log('[Clika Click]', {
+      asin: trackingRecord.asin,
+      country: trackingRecord.country,
+      estimatedCommission: trackingRecord.estimatedCommission,
+    });
+    
+    return json({ success: true, id: generateTrackingId() });
+    
+  } catch (error) {
+    console.error('Click tracking error:', error);
+    return json({ error: 'Internal server error' }, { status: 500 });
+  }
 };
+
+function hashIP(ip: string): string {
+  let hash = 0;
+  for (let i = 0; i < ip.length; i++) {
+    const char = ip.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return hash.toString(16);
+}
+
+function generateTrackingId(): string {
+  return `clk_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+}
