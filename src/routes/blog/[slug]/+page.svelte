@@ -14,7 +14,7 @@
 	import HowToMakeBlowoutLast from '$lib/content/posts/how-to-make-blowout-last.svelte';
 	import DefaultPost from '$lib/content/posts/default.svelte';
 	
-	const slug = $page.params.slug;
+	const slug = $page.params.slug ?? '';
 	const post = getPostBySlug(slug);
 	
 	// Get related posts (same category or shared tags, excluding current)

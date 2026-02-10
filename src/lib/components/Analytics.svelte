@@ -4,7 +4,7 @@
 	
 	const GA4_ID = env.PUBLIC_GA4_ID;
 	const ADSENSE_CLIENT = env.PUBLIC_ADSENSE_CLIENT;
-	const isProd = env.NODE_ENV === 'production' || (browser && window.location.hostname !== 'localhost');
+	const isProd = browser && window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
 	
 	$: shouldLoadGA4 = GA4_ID && isProd;
 	$: shouldLoadAdSense = ADSENSE_CLIENT && isProd;

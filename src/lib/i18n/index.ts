@@ -10,7 +10,10 @@
  */
 
 import { browser } from '$app/environment';
-import { init, register, locale, waitLocale, getLocaleFromNavigator } from 'svelte-i18n';
+import { init, register, locale, waitLocale, getLocaleFromNavigator, _ } from 'svelte-i18n';
+
+// Re-export for convenience
+export { locale, _ };
 import { derived, writable } from 'svelte/store';
 import { supportedLanguages, isLanguageEnabled, getLanguageConfig } from '$lib/types/geo';
 

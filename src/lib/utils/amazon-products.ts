@@ -205,7 +205,7 @@ export const amazonProducts: AmazonProduct[] = [
   },
   {
     asin: 'B08X7K3C9H',
-    title: 'L'ange Le Volume 2-in-1 Brush Dryer',
+    title: "L'ange Le Volume 2-in-1 Brush Dryer",
     description: 'Volumizing brush dryer with ionic and ceramic technology for smooth, bouncy hair.',
     price: '$99.00',
     rating: 4.3,

@@ -1,6 +1,5 @@
 <script>
   import ProductCard from '$lib/components/ProductCard.svelte';
-  import ComparisonTable from '$lib/components/ComparisonTable.svelte';
   import { getProductByAsin } from '$lib/utils/amazon-products';
 
   const dyson = getProductByAsin('B01FIG3JA4');

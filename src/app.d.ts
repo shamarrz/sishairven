@@ -30,6 +30,20 @@ declare global {
     // interface PageData {}
     // interface Platform {}
   }
+  
+  /**
+   * Phoenix Ad System global
+   */
+  interface Window {
+    __PHOENIX_ADS__?: {
+      registerSlot: (config: {
+        position: string;
+        size: string;
+        container: HTMLElement;
+        onLoad: () => void;
+      }) => void;
+    };
+  }
 }
 
 export {};

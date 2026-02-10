@@ -14,7 +14,7 @@
 	let submitStatus: 'idle' | 'success' | 'error' = 'idle';
 	let submitMessage = '';
 	
-	async function handleSubmit(e) {
+	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		submitting = true;
 		submitStatus = 'idle';
