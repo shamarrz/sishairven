@@ -1,60 +1,144 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { generateMetaTags, generateLocalBusinessSchema, siteConfig } from '$lib/utils/seo';
-	
-	export let title: string | undefined = undefined;
-	export let description: string | undefined = undefined;
-	export let image: string | undefined = undefined;
-	export let type: 'website' | 'article' = 'website';
-	export let published: string | undefined = undefined;
-	export let modified: string | undefined = undefined;
-	export let author: string | undefined = undefined;
-	export let schema: Record<string, unknown> | undefined = undefined;
-	
-	$: meta = generateMetaTags({
-		title,
-		description,
-		image,
-		path: $page.url.pathname,
-		type,
-		published,
-		modified,
-		author
-	});
-	
-	$: localBusinessSchema = generateLocalBusinessSchema();
+  /**
+   * SEO Component with Internationalization Support
+   * 
+   * Generates comprehensive SEO meta tags including:
+   * - Basic meta tags (title, description)
+   * - Open Graph tags
+   * - Twitter Card tags
+   * - Hreflang links for multilingual SEO
+   * - Structured data (JSON-LD)
+   * 
+   * @component SEO
+   * @author Hairven Dev Team
+   * @since 2026-02-10
+   */
+  
+  import { page } from '$app/stores';
+  import { locale } from '$lib/i18n';
+  import { supportedLanguages } from '$lib/types/geo';
+  
+  // Props
+  export let title: string;
+  export let description: string;
+  export let type: 'website' | 'article' | 'product' = 'website';
+  export let image: string = '/og-image.jpg';
+  export let published: string | undefined = undefined;
+  export let modified: string | undefined = undefined;
+  export let author: string | undefined = undefined;
+  export let keywords: string[] = [];
+  export let noindex = false;
+  export let schema: object | null = null;
+  
+  // Site config
+  const siteName = 'Hairven by Elyn';
+  const siteUrl = 'https://sishairven.com';
+  const defaultImage = '/og-image.jpg';
+  
+  // Current language
+  $: currentLang = $locale?.split('-')[0] || 'en';
+  
+  // Full title
+  $: fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+  
+  // Full image URL
+  $: imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+  
+  // Current path
+  $: currentPath = $page.url.pathname;
+  
+  // Generate alternate language URLs
+  $: alternateUrls = supportedLanguages
+    .filter(lang => lang.enabled)
+    .map(lang => {
+      // Remove existing language prefix
+      const cleanPath = currentPath.replace(/^\/(es|fr|de|pt|it)/, '') || '/';
+      
+      return {
+        lang: lang.code,
+        href: lang.code === 'en'
+          ? `${siteUrl}${cleanPath}`
+          : `${siteUrl}/${lang.code}${cleanPath}`,
+      };
+    });
+  
+  // Generate JSON-LD structured data
+  $: structuredData = schema ? JSON.stringify(schema) : null;
+  
+  // Default website schema if none provided
+  $: defaultSchema = {
+    '@context': 'https://schema.org',
+    '@type': type === 'article' ? 'Article' : type === 'product' ? 'Product' : 'WebPage',
+    headline: title,
+    description: description,
+    url: `${siteUrl}${currentPath}`,
+    image: imageUrl,
+    ...(type === 'article' && {
+      datePublished: published,
+      dateModified: modified || published,
+      author: {
+        '@type': 'Person',
+        name: author || 'Elyn Makna',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: siteName,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/logo.png`,
+        },
+      },
+    }),
+  };
+  
+  $: finalSchema = schema || defaultSchema;
 </script>
 
 <svelte:head>
-	<!-- Primary Meta -->
-	<title>{meta.title}</title>
-	<meta name="description" content={meta.description} />
-	<link rel="canonical" href={meta.canonical} />
-	
-	<!-- Open Graph -->
-	<meta property="og:title" content={meta.og.title} />
-	<meta property="og:description" content={meta.og.description} />
-	<meta property="og:url" content={meta.og.url} />
-	<meta property="og:image" content={meta.og.image} />
-	<meta property="og:type" content={meta.og.type} />
-	<meta property="og:site_name" content={meta.og.siteName} />
-	{#if meta.og.publishedTime}
-		<meta property="article:published_time" content={meta.og.publishedTime} />
-	{/if}
-	{#if meta.og.modifiedTime}
-		<meta property="article:modified_time" content={meta.og.modifiedTime} />
-	{/if}
-	
-	<!-- Twitter -->
-	<meta name="twitter:card" content={meta.twitter.card} />
-	<meta name="twitter:title" content={meta.twitter.title} />
-	<meta name="twitter:description" content={meta.twitter.description} />
-	<meta name="twitter:image" content={meta.twitter.image} />
-	
-	<!-- JSON-LD Schema -->
-	{#if schema}
-		{@html `<script type="application/ld+json">${JSON.stringify(schema)}</script>`}
-	{:else}
-		{@html `<script type="application/ld+json">${JSON.stringify(localBusinessSchema)}</script>`}
-	{/if}
+  <!-- Basic Meta Tags -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords.join(', ')} />
+  <meta name="author" content={author || 'Elyn Makna'} />
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{siteUrl}{currentPath}" />
+  
+  <!-- Hreflang Tags for Multilingual SEO -->
+  {#each alternateUrls as {lang, href}}
+    <link rel="alternate" hreflang={lang} href={href} />
+  {/each}
+  <!-- X-default for unmatched languages -->
+  <link rel="alternate" hreflang="x-default" href="{siteUrl}{currentPath.replace(/^\/(es|fr|de|pt|it)/, '') || '/'}" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content="{siteUrl}{currentPath}" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:locale" content={currentLang === 'en' ? 'en_US' : `${currentLang}_${currentLang.toUpperCase()}`} />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="{siteUrl}{currentPath}" />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={imageUrl} />
+  
+  <!-- Article Specific (if applicable) -->
+  {#if type === 'article'}
+    <meta property="article:published_time" content={published} />
+    {#if modified}
+      <meta property="article:modified_time" content={modified} />
+    {/if}
+    <meta property="article:author" content={author} />
+  {/if}
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {JSON.stringify(finalSchema)}
+  </script>
 </svelte:head>

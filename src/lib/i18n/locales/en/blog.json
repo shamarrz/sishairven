@@ -1,0 +1,28 @@
+{
+  "title": "Hair Care Blog",
+  "subtitle": "Expert tips, product reviews, and styling guides from our professional stylists",
+  "categories": {
+    "reviews": "Reviews",
+    "guides": "Guides",
+    "education": "Education"
+  },
+  "meta": {
+    "reading_time": "{time} min read",
+    "by_author": "By {author}",
+    "published": "Published {date}",
+    "updated": "Updated {date}"
+  },
+  "filters": {
+    "all_categories": "All Categories",
+    "sort_by": "Sort by",
+    "latest": "Latest",
+    "popular": "Most Popular",
+    "oldest": "Oldest"
+  },
+  "cta": {
+    "read_article": "Read Article",
+    "view_all": "View All Articles",
+    "subscribe_newsletter": "Get hair tips delivered",
+    "related_posts": "You might also like"
+  }
+}

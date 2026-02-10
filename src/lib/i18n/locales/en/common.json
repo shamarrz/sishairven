@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "shop": "Shop",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "book": "Book Now"
+  },
+  "actions": {
+    "book": "Book Appointment",
+    "buy": "Buy Now",
+    "read_more": "Read More",
+    "learn_more": "Learn More",
+    "subscribe": "Subscribe",
+    "share": "Share",
+    "view_all": "View All",
+    "shop_now": "Shop Now",
+    "view_details": "View Details",
+    "add_to_cart": "Add to Cart",
+    "checkout": "Checkout",
+    "continue_shopping": "Continue Shopping",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "loading": "Loading...",
+    "see_more": "See More"
+  },
+  "seo": {
+    "default_title": "Hairven by Elyn | Premium Hair Salon in Cortland, NY",
+    "default_description": "Expert hair styling, coloring, and treatments in Cortland, New York. Book your appointment with Hairven by Elyn today.",
+    "site_name": "Hairven by Elyn"
+  },
+  "footer": {
+    "copyright": "© {year} Hairven by Elyn",
+    "rights": "All rights reserved.",
+    "address": "64 Owego St, Cortland, NY 13045",
+    "phone": "(607) 555-0123",
+    "email": "hello@sishairven.com",
+    "hours": "Tue-Sat: 9am - 7pm",
+    "tagline": "Where Beauty Meets Confidence"
+  },
+  "language": {
+    "select": "Select Language",
+    "current": "Language",
+    "switch": "Switch Language"
+  },
+  "currency": {
+    "select": "Select Currency",
+    "current": "Currency"
+  },
+  "blog": {
+    "read_time": "{minutes} min read",
+    "published_on": "Published on {date}",
+    "by_author": "By {author}",
+    "category": "Category",
+    "tags": "Tags",
+    "related_articles": "Related Articles",
+    "share_article": "Share this article",
+    "leave_comment": "Leave a comment",
+    "subscribe_prompt": "Get hair tips delivered to your inbox",
+    "newsletter_cta": "Subscribe for weekly hair care tips"
+  },
+  "shop": {
+    "categories": "Categories",
+    "filters": "Filters",
+    "price_range": "Price Range",
+    "rating": "Rating",
+    "availability": "Availability",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock",
+    "add_to_wishlist": "Add to Wishlist",
+    "free_shipping": "Free Shipping",
+    "affiliate_disclosure": "As an Amazon Associate, we earn from qualifying purchases.",
+    "price_updated": "Price updated {date}",
+    "view_on_amazon": "View on Amazon",
+    "bestseller": "Bestseller",
+    "sale": "Sale"
+  },
+  "services": {
+    "book_now": "Book Now",
+    "duration": "Duration",
+    "price_starting": "Starting at {price}",
+    "view_all_services": "View All Services"
+  },
+  "forms": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "success": "Thank you! We'll be in touch soon.",
+    "error": "Something went wrong. Please try again."
+  },
+  "errors": {
+    "404_title": "Page Not Found",
+    "404_message": "Sorry, we couldn't find the page you're looking for.",
+    "go_home": "Go Home",
+    "generic": "Something went wrong"
+  }
+}

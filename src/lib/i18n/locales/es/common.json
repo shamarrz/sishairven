@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "shop": "Tienda",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "book": "Reservar"
+  },
+  "actions": {
+    "book": "Reservar Cita",
+    "buy": "Comprar Ahora",
+    "read_more": "Leer Más",
+    "learn_more": "Saber Más",
+    "subscribe": "Suscribirse",
+    "share": "Compartir",
+    "view_all": "Ver Todo",
+    "shop_now": "Comprar Ahora",
+    "view_details": "Ver Detalles",
+    "add_to_cart": "Añadir al Carrito",
+    "checkout": "Finalizar Compra",
+    "continue_shopping": "Seguir Comprando",
+    "apply": "Aplicar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "loading": "Cargando...",
+    "see_more": "Ver Más"
+  },
+  "seo": {
+    "default_title": "Hairven by Elyn | Salón de Belleza Premium en Cortland, NY",
+    "default_description": "Estilismo, coloración y tratamientos capilares expertos en Cortland, Nueva York. Reserva tu cita con Hairven by Elyn hoy.",
+    "site_name": "Hairven by Elyn"
+  },
+  "footer": {
+    "copyright": "© {year} Hairven by Elyn",
+    "rights": "Todos los derechos reservados.",
+    "address": "64 Owego St, Cortland, NY 13045",
+    "phone": "(607) 555-0123",
+    "email": "hello@sishairven.com",
+    "hours": "Mar-Sáb: 9am - 7pm",
+    "tagline": "Donde la Belleza se Encuentra con la Confianza"
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "current": "Idioma",
+    "switch": "Cambiar Idioma"
+  },
+  "currency": {
+    "select": "Seleccionar Moneda",
+    "current": "Moneda"
+  },
+  "blog": {
+    "read_time": "{minutes} min de lectura",
+    "published_on": "Publicado el {date}",
+    "by_author": "Por {author}",
+    "category": "Categoría",
+    "tags": "Etiquetas",
+    "related_articles": "Artículos Relacionados",
+    "share_article": "Compartir este artículo",
+    "leave_comment": "Dejar un comentario",
+    "subscribe_prompt": "Recibe consejos de cabello en tu correo",
+    "newsletter_cta": "Suscríbete para consejos semanales de cuidado capilar"
+  },
+  "shop": {
+    "categories": "Categorías",
+    "filters": "Filtros",
+    "price_range": "Rango de Precio",
+    "rating": "Calificación",
+    "availability": "Disponibilidad",
+    "in_stock": "En Stock",
+    "out_of_stock": "Agotado",
+    "add_to_wishlist": "Añadir a Favoritos",
+    "free_shipping": "Envío Gratis",
+    "affiliate_disclosure": "Como Asociado de Amazon, ganamos con compras que califican.",
+    "price_updated": "Precio actualizado {date}",
+    "view_on_amazon": "Ver en Amazon",
+    "bestseller": "Más Vendido",
+    "sale": "Oferta"
+  },
+  "services": {
+    "book_now": "Reservar Ahora",
+    "duration": "Duración",
+    "price_starting": "Desde {price}",
+    "view_all_services": "Ver Todos los Servicios"
+  },
+  "forms": {
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "submit": "Enviar",
+    "sending": "Enviando...",
+    "success": "¡Gracias! Nos pondremos en contacto pronto.",
+    "error": "Algo salió mal. Por favor intenta de nuevo."
+  },
+  "errors": {
+    "404_title": "Página No Encontrada",
+    "404_message": "Lo sentimos, no pudimos encontrar la página que buscas.",
+    "go_home": "Ir al Inicio",
+    "generic": "Algo salió mal"
+  }
+}

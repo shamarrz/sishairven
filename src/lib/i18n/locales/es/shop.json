@@ -1,0 +1,40 @@
+{
+  "title": "Tienda de Productos Recomendados",
+  "subtitle": "Productos profesionales para el cuidado del cabello seleccionados por nuestros estilistas",
+  "categories": {
+    "hair-tools": "Herramientas",
+    "hair-care": "Cuidado Capilar",
+    "styling": "Productos de Peinado",
+    "brushes": "Cepillos",
+    "accessories": "Accesorios"
+  },
+  "filters": {
+    "all_products": "Todos los Productos",
+    "price_low_high": "Precio: Menor a Mayor",
+    "price_high_low": "Precio: Mayor a Menor",
+    "rating": "Mejor Valorados",
+    "bestselling": "Más Vendidos"
+  },
+  "product": {
+    "features": "Características",
+    "specifications": "Especificaciones",
+    "reviews": "Reseñas",
+    "related": "Productos Relacionados",
+    "in_stock": "En Stock",
+    "out_of_stock": "Agotado",
+    "bestseller": "Más Vendido",
+    "sale": "Oferta",
+    "view_on_amazon": "Ver en Amazon",
+    "price_may_vary": "El precio y disponibilidad pueden variar"
+  },
+  "cart": {
+    "title": "Tu Carrito",
+    "empty": "Tu carrito está vacío",
+    "continue_shopping": "Seguir Comprando",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "total": "Total",
+    "checkout": "Finalizar Compra"
+  },
+  "disclosure": "Como Asociado de Amazon, ganamos con compras que califican. Esto no tiene costo adicional para ti."
+}

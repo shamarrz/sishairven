@@ -1,0 +1,40 @@
+{
+  "title": "Boutique de Produits Recommandés",
+  "subtitle": "Produits professionnels de soins capillaires sélectionnés par nos coiffeurs",
+  "categories": {
+    "hair-tools": "Outils Coiffure",
+    "hair-care": "Soins Capillaires",
+    "styling": "Produits de Coiffage",
+    "brushes": "Brosses",
+    "accessories": "Accessoires"
+  },
+  "filters": {
+    "all_products": "Tous les Produits",
+    "price_low_high": "Prix: Croissant",
+    "price_high_low": "Prix: Décroissant",
+    "rating": "Mieux Notés",
+    "bestselling": "Meilleures Ventes"
+  },
+  "product": {
+    "features": "Caractéristiques",
+    "specifications": "Spécifications",
+    "reviews": "Avis",
+    "related": "Produits Similaires",
+    "in_stock": "En Stock",
+    "out_of_stock": "Rupture de Stock",
+    "bestseller": "Meilleure Vente",
+    "sale": "Promo",
+    "view_on_amazon": "Voir sur Amazon",
+    "price_may_vary": "Le prix et la disponibilité peuvent varier"
+  },
+  "cart": {
+    "title": "Votre Panier",
+    "empty": "Votre panier est vide",
+    "continue_shopping": "Continuer les Achats",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "total": "Total",
+    "checkout": "Passer Commande"
+  },
+  "disclosure": "En tant qu'associé Amazon, nous gagnons sur les achats éligibles. Cela ne vous coûte pas plus cher."
+}

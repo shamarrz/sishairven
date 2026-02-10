@@ -1,0 +1,28 @@
+{
+  "title": "Blog Soins Capillaires",
+  "subtitle": "Conseils d'experts, avis produits et guides de coiffure de nos professionnels",
+  "categories": {
+    "reviews": "Avis",
+    "guides": "Guides",
+    "education": "Éducation"
+  },
+  "meta": {
+    "reading_time": "{time} min de lecture",
+    "by_author": "Par {author}",
+    "published": "Publié {date}",
+    "updated": "Mis à jour {date}"
+  },
+  "filters": {
+    "all_categories": "Toutes les Catégories",
+    "sort_by": "Trier par",
+    "latest": "Plus Récents",
+    "popular": "Plus Populaires",
+    "oldest": "Plus Anciens"
+  },
+  "cta": {
+    "read_article": "Lire l'Article",
+    "view_all": "Voir Tous les Articles",
+    "subscribe_newsletter": "Recevez des conseils capillaires",
+    "related_posts": "Vous aimerez aussi"
+  }
+}

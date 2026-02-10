@@ -1,0 +1,40 @@
+{
+  "title": "Shop Recommended Products",
+  "subtitle": "Professional hair care products curated by our stylists",
+  "categories": {
+    "hair-tools": "Hair Tools",
+    "hair-care": "Hair Care",
+    "styling": "Styling Products",
+    "brushes": "Brushes",
+    "accessories": "Accessories"
+  },
+  "filters": {
+    "all_products": "All Products",
+    "price_low_high": "Price: Low to High",
+    "price_high_low": "Price: High to Low",
+    "rating": "Highest Rated",
+    "bestselling": "Bestselling"
+  },
+  "product": {
+    "features": "Features",
+    "specifications": "Specifications",
+    "reviews": "Reviews",
+    "related": "Related Products",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock",
+    "bestseller": "Bestseller",
+    "sale": "Sale",
+    "view_on_amazon": "View on Amazon",
+    "price_may_vary": "Price and availability may vary"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Proceed to Checkout"
+  },
+  "disclosure": "As an Amazon Associate, we earn from qualifying purchases. This comes at no additional cost to you."
+}

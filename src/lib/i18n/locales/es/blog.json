@@ -1,0 +1,28 @@
+{
+  "title": "Blog de Cuidado Capilar",
+  "subtitle": "Consejos expertos, reseñas de productos y guías de estilo de nuestros estilistas profesionales",
+  "categories": {
+    "reviews": "Reseñas",
+    "guides": "Guías",
+    "education": "Educación"
+  },
+  "meta": {
+    "reading_time": "{time} min de lectura",
+    "by_author": "Por {author}",
+    "published": "Publicado {date}",
+    "updated": "Actualizado {date}"
+  },
+  "filters": {
+    "all_categories": "Todas las Categorías",
+    "sort_by": "Ordenar por",
+    "latest": "Más Recientes",
+    "popular": "Más Populares",
+    "oldest": "Más Antiguos"
+  },
+  "cta": {
+    "read_article": "Leer Artículo",
+    "view_all": "Ver Todos los Artículos",
+    "subscribe_newsletter": "Recibe consejos de cabello",
+    "related_posts": "También te puede gustar"
+  }
+}
