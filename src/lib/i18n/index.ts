@@ -11,11 +11,9 @@
 
 import { browser } from '$app/environment';
 import { init, register, locale, waitLocale, getLocaleFromNavigator, _ } from 'svelte-i18n';
-
-// Re-export for convenience
-export { locale, _ };
-import { derived, writable } from 'svelte/store';
+import { get, derived, writable } from 'svelte/store';
 import { supportedLanguages, isLanguageEnabled, getLanguageConfig } from '$lib/types/geo';
+import { siteConfig } from '$lib/utils/seo';
 
 // =============================================================================
 // TRANSLATION REGISTRATION
@@ -236,8 +234,8 @@ export function generateHreflangLinks(path: string): Array<{ lang: string; url: 
   return enabledLangs.map(lang => ({
     lang: lang.code,
     url: lang.code === 'en' 
-      ? `https://sishairven.com${path}`
-      : `https://sishairven.com/${lang.code}${path}`,
+      ? `${siteConfig.url}${path}`
+      : `${siteConfig.url}/${lang.code}${path}`,
   }));
 }
 
@@ -301,5 +299,7 @@ export const translationKeys = {
   },
 } as const;
 
-// Need to import get for the format functions
-import { get } from 'svelte/store';
+
+
+// Re-export for convenience
+export { locale, _ };

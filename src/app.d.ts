@@ -1,5 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
+// for information on these interfaces
 declare global {
   namespace App {
     // interface Error {}
@@ -16,6 +16,12 @@ declare global {
        * Based on geo, cookies, and Accept-Language header
        */
       lang: string;
+      
+      /**
+       * CSP nonce for this request
+       * Used to allow inline scripts with strict CSP
+       */
+      cspNonce: string;
       
       /**
        * User session data (if authenticated)

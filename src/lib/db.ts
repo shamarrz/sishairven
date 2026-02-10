@@ -1,4 +1,4 @@
-import { dirname, join } from 'path';
+import { dirname } from 'path';
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'fs';
 
 const dbPath = process.env.DB_PATH || '/data/appointments.json';

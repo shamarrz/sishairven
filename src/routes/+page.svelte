@@ -51,21 +51,30 @@
 				currentBgIndex = (currentBgIndex + 1) % bgImages.length;
 			}, 5000); // Change every 5 seconds
 			
-			// Cleanup on unmount
-			return () => clearInterval(interval);
-		}
-		
-		// Smooth scroll for anchor links
-		const links = document.querySelectorAll('a[href^="#"]');
-		links.forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const href = link.getAttribute('href');
-				if (href) {
-					scrollToSection(href.substring(1));
-				}
+			// Smooth scroll for anchor links
+			const links = document.querySelectorAll('a[href^="#"]');
+			const clickHandlers: Array<(e: Event) => void> = [];
+			
+			links.forEach(link => {
+				const handler = (e: Event) => {
+					e.preventDefault();
+					const href = link.getAttribute('href');
+					if (href) {
+						scrollToSection(href.substring(1));
+					}
+				};
+				clickHandlers.push(handler);
+				link.addEventListener('click', handler);
 			});
-		});
+			
+			// Cleanup on unmount
+			return () => {
+				clearInterval(interval);
+				links.forEach((link, i) => {
+					link.removeEventListener('click', clickHandlers[i]);
+				});
+			};
+		}
 	});
 	
 	async function handleSubmit(e: Event) {

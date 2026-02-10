@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@maxmind/geoip2-node": "^6.3.4",
+    "chart.js": "^4.5.1",
     "svelte-i18n": "^4.0.1"
   },
   "type": "module"

@@ -31,8 +31,9 @@
   export let schema: object | null = null;
   
   // Site config
-  const siteName = 'Hairven by Elyn';
-  const siteUrl = 'https://sishairven.com';
+  import { siteConfig } from '$lib/utils/seo';
+  const siteName = siteConfig.name;
+  const siteUrl = siteConfig.url;
   const defaultImage = '/og-image.jpg';
   
   // Current language

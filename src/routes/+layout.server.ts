@@ -10,6 +10,7 @@
  */
 
 import type { LayoutServerLoad } from './$types';
+import { siteConfig } from '$lib/utils/seo';
 
 export const load: LayoutServerLoad = async ({ locals, request }) => {
   // Get geo data from locals (injected by hooks.server.ts)
@@ -42,7 +43,7 @@ function generateAlternateLanguages(pathname: string): Array<{ code: string; url
   return languages.map(code => ({
     code,
     url: code === 'en' 
-      ? `https://sishairven.com${cleanPath}`
-      : `https://sishairven.com/${code}${cleanPath}`,
+      ? `${siteConfig.url}${cleanPath}`
+      : `${siteConfig.url}/${code}${cleanPath}`,
   }));
 }

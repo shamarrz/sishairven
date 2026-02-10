@@ -110,7 +110,7 @@
 		<section class="py-12">
 			<div class="max-w-4xl mx-auto px-4">
 				<div class="bg-black-soft/30 rounded-lg p-6 md:p-12 border border-gray-dark">
-					<PostContent />
+					<svelte:component this={PostContent} />
 				</div>
 			</div>
 		</section>

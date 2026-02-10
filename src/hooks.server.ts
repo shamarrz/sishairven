@@ -15,6 +15,17 @@ import { detectGeoFromHeaders, defaultGeoData, createGeoCookie, parseGeoCookie }
 import { detectLanguageFromHeader, getDefaultLanguage, isLanguageEnabled } from '$lib/types/geo';
 
 /**
+ * Security headers to add to all responses
+ */
+const securityHeaders = {
+	'X-Frame-Options': 'DENY',
+	'X-Content-Type-Options': 'nosniff',
+	'X-XSS-Protection': '1; mode=block',
+	'Referrer-Policy': 'strict-origin-when-cross-origin',
+	'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+};
+
+/**
  * Main request handler hook
  * Detects geo location and sets language for each request
  */
@@ -29,8 +40,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     // Try to detect from headers (Cloudflare, Vercel, etc.)
     geo = detectGeoFromHeaders(event.request.headers);
   } catch (error) {
-    console.error('Geo detection failed:', error);
-    // Fall back to default
+    // Silently fall back to default
     geo = defaultGeoData;
   }
   
@@ -94,6 +104,11 @@ export const handle: Handle = async ({ event, resolve }) => {
   
   const response = await resolve(event);
   
+  // Add security headers
+  Object.entries(securityHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+  
   // Set geo preference cookie if not present
   if (!cookieHeader?.includes('geo_pref=')) {
     const geoCookieValue = createGeoCookie(geo);
@@ -102,13 +117,9 @@ export const handle: Handle = async ({ event, resolve }) => {
   
   // Set language preference cookie
   if (!cookieHeader?.includes('lang_pref=') || urlLang) {
-    const langCookie = `lang_pref=${lang}; Path=/; Max-Age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    const langCookie = `lang_pref=${lang}; Path=/; Max-Age=${60 * 60 * 24 * 365}; SameSite=Lax; HttpOnly`;
     response.headers.append('Set-Cookie', langCookie);
   }
-  
-  // Add geo headers for debugging (remove in production)
-  // response.headers.set('X-Detected-Country', geo.country);
-  // response.headers.set('X-Detected-Language', lang);
   
   return response;
 };
@@ -117,8 +128,14 @@ export const handle: Handle = async ({ event, resolve }) => {
  * Global error handler
  */
 export const handleError: HandleServerError = ({ error, event }) => {
-  console.error('Server error:', error);
-  console.error('Request:', event.request.url);
+  // Log error details (in production, use a proper logging service)
+  const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+  
+  console.error('[Server Error]', {
+    message: errorMessage,
+    url: event.request.url,
+    timestamp: new Date().toISOString(),
+  });
   
   return {
     message: 'An unexpected error occurred',
