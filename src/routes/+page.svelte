@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import SEO from '$lib/components/SEO.svelte';
+	import { generateLocalBusinessSchema } from '$lib/utils/seo';
 	
 	let formData = {
 		name: '',
@@ -112,10 +114,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Hairven by Elyn - Hair Salon & Beauty Services</title>
-	<meta name="description" content="Hairven by Elyn - Premier hair salon and beauty services in Cortland, NY. Specializing in French Balayage, cuts, color, nails, and more." />
-</svelte:head>
+<SEO 
+	title="Premium Hair Salon & Beauty Services"
+	description="Hairven by Elyn - Premier hair salon in Cortland, NY. Expert styling, French Balayage, coloring, nails, and skincare. Book your appointment today."
+	schema={generateLocalBusinessSchema()}
+/>
 
 <!-- Call Button (Top Right) - Desktop Only -->
 <div class="hidden md:block fixed top-4 right-4 z-50">
